@@ -1,0 +1,166 @@
+<?php
+
+$pak = $_POST['pilih'];
+$jum = $_POST['jumlah'];
+$sat = $_POST['satuan'];
+$har = $_POST['harga'];
+$bayar = $_POST['bayar'];
+$gtotal = $_POST['gtotal'];
+?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<style>
+    body {
+        font-family: 'Roboto Condensed', sans-serif;
+        background-color: #d0d4dc;
+    }
+</style>
+
+<script type="text/javascript">
+    function message() {
+        alert("<?php $bayar = $_POST['bayar'];
+                $gtotal = $_POST['gtotal'];
+                $kembali = $bayar - $gtotal;
+                echo "Kembalian Anda ". $kembali ?>")
+    }
+</script>
+
+<body onload="message()">
+    <div class="container p-5">
+        <div class="card text-center">
+            <h1 class="mt-2"><strong>Keranjang</strong></h1>
+            <hr>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Pakaian</th>
+                        <th scope="col">Harga Satuan</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><?php echo $pak ?></td>
+                        <td><?php echo $sat ?></td>
+                        <td><?php echo $jum ?></td>
+                        <td><?php echo $har ?></td>
+                    </tr>
+                </tbody>
+            </table>
+            <form class="p-3" method="POST" action="keranjang.php">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="exampleInputEmail1" class="form-label">Sub Total</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <input type="text" class="form-control" id="exampleInputEmail1" value="<?php echo $har ?>" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="exampleInputEmail1" class="form-label">Bayar</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <input type="text" class="form-control" id="bayar" name="bayar" value="<?php echo $bayar ?>" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="exampleInputEmail1" class="form-label">Diskon</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <input type="text" class="form-control" name="diskon" id="exampleInputEmail1" value="<?php
+                                                                                                                    $har = $_POST['harga'];
+                                                                                                                    if ($har <= 252000) {
+                                                                                                                        echo 'Mohon Maaf Tidak Ada Diskon';
+                                                                                                                    } else if ($har <= 439000) {
+                                                                                                                        $diskon = $har * 11 / 100;
+                                                                                                                        $gtotal = $har - $diskon;
+                                                                                                                        echo  '11%';
+                                                                                                                    } else if ($har <= 640000) {
+                                                                                                                        $diskon = $har * 21 / 100;
+                                                                                                                        $gtotal = $har - $diskon;
+                                                                                                                        echo '21%';
+                                                                                                                    } else if ($har > 640000) {
+                                                                                                                        $diskon = $har * 35 / 100;
+                                                                                                                        $gtotal = $har - $diskon;
+                                                                                                                        echo '35%';
+                                                                                                                    } ?>" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="exampleInputEmail1" class="form-label">Kembalian</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <input type="text" name="kembali" class="form-control" id="kembali" value="<?php
+                                                                                                        $bayar = $_POST['bayar'];
+                                                                                                        $gtotal = $_POST['gtotal'];
+                                                                                                        $kembali = $bayar - $gtotal;
+                                                                                                        echo $kembali;
+                                                                                                        ?>" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="exampleInputEmail1" class="form-label">Grand Total</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <input type="text" class="form-control" name="gtotal" id="gtotal" value="<?php
+                                                                                                        $har = $_POST['harga'];
+                                                                                                        if ($har <= 252000) {
+                                                                                                            echo 'Mohon Maaf Tidak Ada Diskon';
+                                                                                                        } else if ($har <= 439000) {
+                                                                                                            $diskon = $har * 11 / 100;
+                                                                                                            $gtotal = $har - $diskon;
+                                                                                                            echo  $gtotal;
+                                                                                                        } else if ($har <= 640000) {
+                                                                                                            $diskon = $har * 21 / 100;
+                                                                                                            $gtotal = $har - $diskon;
+                                                                                                            echo $gtotal;
+                                                                                                        } else if ($har > 640000) {
+                                                                                                            $diskon = $har * 35 / 100;
+                                                                                                            $gtotal = $har - $diskon;
+                                                                                                            echo $gtotal;
+                                                                                                        } ?>" disabled>
+                        </div>
+                    </div>
+                </div>
+                <a href="kasir.php">
+                    <button class="btn btn-primary">Kembali</button>
+                </a>
+
+            </form>
+        </div>
+        <a href="../index.php">
+            <button type="button" class="btn btn-primary col-md-12 mt-2">Leanding Page</button>
+        </a>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+
+<script>
+    function total() {
+        var bayar = document.getElementById('bayar');
+        var gtotal = document.getElementById('gtotal');
+        document.g
+        var kembali = bayar - gtotal;
+        document.getElementById('kembali').innerHTML = kembali;
+    }
+</script>
+
+</html>
