@@ -25,7 +25,7 @@
         <div class="card p-3">
             <h1><strong>Form Pembelian</strong></h1>
             <hr>
-            <form action="kasir.php" method="POST" id="formdata" class="row g-3 needs-validation" novalidate>
+            <form action="kasir.html" method="POST" id="formdata" class="row g-3 needs-validation" novalidate>
                 <div class="row mt-3">
                     <label for="validationCustom01" class="form-label">Jenis Pakaian</label>
                     <div class="col-md-11">
@@ -76,7 +76,7 @@
         </div>
 
         <div class="card p-3 mt-3" id="tombol">
-            <form method="POST" action="keranjang.php" class="row g-3 needs-validation" novalidate>
+            <form method="POST" action="keranjang.html" class="row g-3 needs-validation" novalidate>
                 <div class="col-md-3">
                     <label for="validationCustom02" class="form-label">Pakaian</label>
                     <input type="text" class="form-control" id="barang" name="pilih" value="<?php if (isset($_POST['pakaian'])) {
